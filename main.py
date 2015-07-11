@@ -54,9 +54,11 @@ def repl():
             if signal != 0 and signal != None:
                 if hasattr(signal, "__call__"):
                     current_cmd_pipe = signal
+                    level += 1
                 else:
                     print "'{cmdname}' returned with SIGNAL {sig}"\
                             .format(cmdname = cmd[0], sig = signal)
+                    current_cmd_pipe = None
 
         except EOFError:
             level -= 1
